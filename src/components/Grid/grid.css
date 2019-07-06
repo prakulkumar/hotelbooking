@@ -1,0 +1,108 @@
+.template_container {
+    padding: 20px 30px;
+    height: 100%;
+    position: relative !important;
+}
+  
+.template_subitem {
+    border: 1px solid #99AAAB;
+    width: 50px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pointerCursor {
+    cursor: pointer;
+}
+
+.template_item {
+    display: flex;
+    flex-direction: row;
+}
+
+.app__navbar {
+    display: flex;
+    justify-content: space-between;
+    color: black;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+}
+
+.template_subitem_showOnHover {
+    display: none;
+    font-weight: bold;
+}
+.template_subitem:hover .template_subitem_showOnHover{
+        display: block;
+}
+
+.template_item__container {
+    overflow: auto;
+    height: 82%;
+}
+
+.template_overlay {
+    padding: 20px 30px;
+    height: 100%;
+    width: 100%;
+    position: absolute !important;
+    z-index: 10;
+    top: 0;
+    left: 0;
+}
+
+.template_overlay__container {
+    background: rgb(0, 0, 0, .5);
+    height: 94%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.template_overlay__container .spinner-border {
+    width: 50px;
+    height: 50px;
+}
+ 
+.template_item__container::-webkit-scrollbar {
+    width: 0;
+}
+
+.disable-cell {
+    background: rgb(128, 128, 128, .3) !important;
+    border: 1 px solid #99AAAB !important;
+    color: rgb(128, 128, 128) !important;
+    pointer-events:none;
+    cursor: none;
+}
+
+.disableMonthNav {
+    color: #d3d3d3;
+    pointer-events:none;
+}
+
+.importantCells {
+    background: #4C4B4B;
+    color: white;
+    border: none;
+}
+
+/* .template_item__container::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+.template_item__container::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+} */
