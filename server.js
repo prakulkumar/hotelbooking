@@ -1,7 +1,7 @@
 const http = require('http');
 const express = require('express');
 // const mongoose = require('mongoose');
-// const MongoClient = require('mongodb').MongoClient;
+const MongoClient = require('mongodb').MongoClient;
 const bookingDetailsRouter = require('./router/bookingDetails');
 const monthDetailsRouter = require('./router/monthDetails');
 const roomDetailsRouter = require('./router/roomsDetails');
@@ -16,24 +16,13 @@ const server = http.createServer(app);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const url = "mongodb://localhost:27017/";
+// const url = `mongodb+srv://prakul:mlab404@cluster0-jtu6n.gcp.mongodb.net/hotel-booking?retryWrites=true&w=majority`;
 
-// const myobj = [{
-//   "monthName": "June",
-//   "year": 2019,
-//   "monthNumber": 5,
-//   "numberOfDays": 30,
-//   "bookingArray": [{
-//     "roomNumber": "105",
-//     "personName": "Prakul Dhiman",
-//     "bookingId": "",
-//     "dates": [20, 21, 22, 23]
-//   }]
-// }];
+const myobj = []
 
 // MongoClient.connect(url, function (err, db) {
 //   var dbo = db.db("hotel-booking");
-//   dbo.createCollection("months", function (err, res) {
+//   dbo.createCollection("rooms", function (err, res) {
 //     if (err) throw err;
 //     console.log("Collection created!");
 //     db.close();
@@ -43,7 +32,7 @@ const url = "mongodb://localhost:27017/";
 // MongoClient.connect(url, function (err, db) {
 //   var dbo = db.db("hotel-booking");
 
-//   dbo.collection("months").insertMany(myobj, function (err, res) {
+//   dbo.collection("rooms").insertMany(myobj, function (err, res) {
 //     if (err) throw err;
 //     console.log("Number of documents inserted: " + res.insertedCount);
 //     db.close();

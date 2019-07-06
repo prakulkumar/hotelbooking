@@ -15,6 +15,6 @@ const collections = {
     bookings: "bookings"
 }
 
-const mongoUrl = "mongodb://localhost:27017/" + dataBaseName;
+const mongoUrl = `mongodb+srv://prakul:mlab404@cluster0-jtu6n.gcp.mongodb.net/${dataBaseName}?retryWrites=true&w=majority`;
 
 module.exports = { monthObj, dataBaseName, collections, mongoUrl };
