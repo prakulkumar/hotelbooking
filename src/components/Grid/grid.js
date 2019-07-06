@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './grid.css';
 import dateFNS from 'date-fns';
-import { Tooltip, OverlayTrigger, Navbar, Button } from 'react-bootstrap';
+import { Tooltip, OverlayTrigger, Navbar } from 'react-bootstrap';
 import HotelBookingForm from '../HotelBookingForm/HotelBookingForm';
 import axios from 'axios';
 

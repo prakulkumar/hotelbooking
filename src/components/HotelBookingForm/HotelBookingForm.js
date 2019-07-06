@@ -257,6 +257,7 @@ class HotelBookingForm extends Component {
                                             if (room.roomType === this.state.hotelBookingForm.rooms[index].roomType) {
                                                 return <option key={`roomNo${i}`}>{room.roomNumber}</option>
                                             }
+                                            return null;
                                         })}
                                     </Form.Control>
                                     <span className="required">*</span>
@@ -284,6 +285,7 @@ class HotelBookingForm extends Component {
                                                     if (room.roomType === this.state.hotelBookingForm.rooms[index].roomType) {
                                                         return <option key={`roomNo${i}`}>{room.roomNumber}</option>
                                                     }
+                                                    return null;
                                                 })}
                                             </Form.Control>
                                             <span className="required">*</span>
@@ -561,7 +563,7 @@ class HotelBookingForm extends Component {
                     <Modal.Footer style={{ marginTop: '2%' }}>
                         {this.state.hotelBookingForm.step === 1 ? null : <Button variant="secondary" onClick={this.prevStep}>Previous</Button>}
                         {this.state.hotelBookingForm.step < 3 ? <Button variant="primary" type="submit">Next</Button> : null}
-                        {this.state.hotelBookingForm.step == 3 ? <Button variant="primary" onClick={(e) => this.hotelBookedHandler(e)}>Submit</Button> : null}
+                        {this.state.hotelBookingForm.step === 3 ? <Button variant="primary" onClick={(e) => this.hotelBookedHandler(e)}>Submit</Button> : null}
                     </Modal.Footer>
                 )
                 break;
