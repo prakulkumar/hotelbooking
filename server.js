@@ -1,5 +1,8 @@
 const http = require('http');
 const express = require('express');
+const cors = require('cors');
+const path = require('path');
+
 // const mongoose = require('mongoose');
 const MongoClient = require('mongodb').MongoClient;
 const bookingDetailsRouter = require('./router/bookingDetails');
@@ -39,7 +42,10 @@ const myobj = []
 //   });
 // });
 
-app.use('/', express.static('./build'));
+app.use(express.static(path.join(__dirname, '/build')));
+// app.get('*', cors(), (req, res) => {
+//   res.sendFile(path.join(__dirname + '/build/index.html'))
+// });
 
 app.use(bookingDetailsRouter);
 app.use(monthDetailsRouter);
