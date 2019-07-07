@@ -1,4 +1,6 @@
 const express = require('express');
+const cors = require('cors');
+
 const router = new express.Router();
 const collections = require('../constant').collections;
 const monthsDetailPromise = require('./data').monthsDetailPromise;
@@ -7,7 +9,7 @@ const dataBaseConnection = require('./dataBaseConnection');
 const dateFNS = require('date-fns');
 
 dataBaseConnection().then(dbs => {
-    router.post('/getMonthObj', (req, res) => {
+    router.post('/getMonthObj', cors(), (req, res) => {
         try {
             monthsDetailPromise(dbs, collections.months, req.body).then(result => res.send(result));
         } catch (error) {
@@ -15,7 +17,7 @@ dataBaseConnection().then(dbs => {
         }
     });
 
-    router.post('/addMonthObj', (req, res) => {
+    router.post('/addMonthObj', cors(), (req, res) => {
         try {
             addDataPromise(dbs, collections.months, req.body).then(result => res.send(result));
         } catch (error) {
@@ -23,7 +25,7 @@ dataBaseConnection().then(dbs => {
         }
     });
 
-    router.post('/createBulkMonthObj', async (req, res) => {
+    router.post('/createBulkMonthObj', cors(), async (req, res) => {
         try {
             const diffrenceInMonth = dateFNS.differenceInCalendarMonths(req.body.dateOfDeparture, req.body.dateOfArrival);
             for (let index = 0; index <= diffrenceInMonth; index++) {
@@ -45,7 +47,7 @@ dataBaseConnection().then(dbs => {
         }
     };
 
-    router.post('/checkForMonthObj', async (req, res) => {
+    router.post('/checkForMonthObj', cors(), async (req, res) => {
         try {
             const result = await checkAndAddMonthObj(req.body);
             res.status(200).send(result);
@@ -71,14 +73,5 @@ dataBaseConnection().then(dbs => {
         }
     }
 })
-
-// router.get('/getBookingDeatils/:id', (req, res) => {
-//     try {
-//         console.log(req.params.id);
-//         res.send(req.params.id);
-//     } catch (error) {
-//         console.log(error);
-//     }
-// })
 
 module.exports = router;

@@ -1,4 +1,6 @@
 const express = require('express');
+const cors = require('cors');
+
 const router = new express.Router();
 const dataBaseConnection = require('./dataBaseConnection');
 const collections = require('../constant').collections;
@@ -7,7 +9,7 @@ const monthsDetailPromise = require('./data').monthsDetailPromise;
 const dateFNS = require('date-fns');
 
 dataBaseConnection().then(dbs => {
-    router.get('/getRooms', (req, res) => {
+    router.get('/getRooms', cors(), (req, res) => {
         try {
             roomsArrayPromise(dbs, collections.rooms).then(result => res.send(result));
         } catch (error) {
@@ -23,7 +25,7 @@ dataBaseConnection().then(dbs => {
         }
     };
 
-    router.post('/getAvailableRooms', async (req, res) => {
+    router.post('/getAvailableRooms', cors(), async (req, res) => {
         try {
             const roomsArray = await roomsArrayPromise(dbs, collections.rooms);
             let availableroomArray = [];
@@ -57,15 +59,6 @@ dataBaseConnection().then(dbs => {
             console.log(error)
         }
     });
-
-    // router.get('/getBookingDeatils/:id', (req, res) => {
-    //     try {
-    //         console.log(req.params.id);
-    //         res.send(req.params.id);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // })
 })
 
 module.exports = router;

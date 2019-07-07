@@ -1,4 +1,6 @@
 const express = require('express');
+const cors = require('cors');
+
 const router = new express.Router();
 const dataBaseConnection = require('./dataBaseConnection');
 const collections = require('../constant').collections;
@@ -9,7 +11,7 @@ const dateFNS = require('date-fns');
 const ObjectID = require('mongodb').ObjectID;
 
 dataBaseConnection().then(dbs => {
-    router.post('/addBookingDetails', async (req, res) => {
+    router.post('/addBookingDetails', cors(), async (req, res) => {
         try {
             console.log(req.body)
             const personObj = {
@@ -76,7 +78,7 @@ dataBaseConnection().then(dbs => {
         }
     };
 
-    router.post('/updateBookingDetails', async (req, res) => {
+    router.post('/updateBookingDetails', cors(), async (req, res) => {
         try {
             const personObj = {
                 "firstName": req.body.firstName,
@@ -149,7 +151,7 @@ dataBaseConnection().then(dbs => {
         await updateDataPromise(dbs, collections.months, { _id: monthObj._id }, { $set: { bookingArray: monthObj.bookingArray } });
     }
 
-    router.get('/getBookingDetails/:id', async (req, res) => {
+    router.get('/getBookingDetails/:id', cors(), async (req, res) => {
         try {
             const bookingObjectID = new ObjectID(req.params.id);
             const bookingObj = await findOnePromise(dbs, collections.bookings, { _id: bookingObjectID });
