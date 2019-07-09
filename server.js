@@ -1,10 +1,9 @@
 const http = require('http');
 const express = require('express');
-const cors = require('cors');
 const path = require('path');
 
 // const mongoose = require('mongoose');
-const MongoClient = require('mongodb').MongoClient;
+// const MongoClient = require('mongodb').MongoClient;
 const bookingDetailsRouter = require('./router/bookingDetails');
 const monthDetailsRouter = require('./router/monthDetails');
 const roomDetailsRouter = require('./router/roomsDetails');
@@ -21,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // const url = `mongodb+srv://prakul:mlab404@cluster0-jtu6n.gcp.mongodb.net/hotel-booking?retryWrites=true&w=majority`;
 
-const myobj = []
+// const myobj = []
 
 // MongoClient.connect(url, function (err, db) {
 //   var dbo = db.db("hotel-booking");
