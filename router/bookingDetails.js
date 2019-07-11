@@ -13,7 +13,7 @@ const ObjectID = require('mongodb').ObjectID;
 dataBaseConnection().then(dbs => {
     router.post('/addBookingDetails', cors(), async (req, res) => {
         try {
-            console.log(req.body)
+            console.log('req : ', req.body)
             const personObj = {
                 "firstName": req.body.firstName,
                 "lastName": req.body.lastName,
@@ -39,6 +39,7 @@ dataBaseConnection().then(dbs => {
             }
 
             const bookingResponse = await addDataPromise(dbs, collections.bookings, bookingObj);
+            console.log('booking res : ', bookingResponse)
             const bookingId = bookingResponse.ops[0]._id;
 
             const diffrenceInMonth = dateFNS.differenceInCalendarMonths(req.body.dateOfDeparture, req.body.dateOfArrival);
@@ -67,7 +68,8 @@ dataBaseConnection().then(dbs => {
         const monthObj = await findOnePromise(dbs, collections.months, monthYearObj);
         monthObj.bookingArray = [...monthObj.bookingArray, ...roomsArray];
 
-        await updateDataPromise(dbs, collections.months, { _id: monthObj._id }, { $set: { bookingArray: monthObj.bookingArray } });
+        const updateRes = await updateDataPromise(dbs, collections.months, { _id: monthObj._id }, { $set: { bookingArray: monthObj.bookingArray } });
+        console.log('updateRes : ', updateRes);
     }
 
     correctMonthAndYear = (monthNumber, year) => {
