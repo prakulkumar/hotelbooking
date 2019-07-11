@@ -54,7 +54,7 @@ class HotelBookingForm extends Component {
                 axios.get(`/getBookingDetails/${this.props.detailsForForm.bookingId}`)
                     .then(res => {
                         let data = res.data;
-                        console.log(data)
+                        console.log('response booking data : ', data);
                         let form = {
                             step: 1,
                             firstName: data.firstName,
@@ -80,6 +80,7 @@ class HotelBookingForm extends Component {
                     .catch(error => console.log(error))
             }
         }
+        console.log('booking data : ', new Date());
     }
 
     nextStep = () => {
@@ -165,6 +166,7 @@ class HotelBookingForm extends Component {
                         minDate={this.state.hotelBookingForm.dateOfArrival}
                         key="dateOfDeparture"
                         className="form-control"
+                        excludeDates={[new Date("07-15-2019"), new Date("07-20-2019"), new Date("07-21-2019"), new Date("07-25-2019")]}
                         disabled={!this.state.isEdit && this.state.disable}
                         required
                     />
@@ -410,6 +412,8 @@ class HotelBookingForm extends Component {
             bookingData['previousArrivalDate'] = this.state.previousArrivalDate;
         }
         else { console.log('newbooking'); url = '/addBookingDetails' }
+
+        console.log('booking data : ', bookingData);
 
         axios.post(url, bookingData)
             .then(res => {
