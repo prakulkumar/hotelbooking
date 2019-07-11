@@ -22,7 +22,7 @@ class HotelBookingForm extends Component {
             dateOfArrival: '',
             dateOfDeparture: '',
             noOfAdults: '',
-            noOfChildren: '',
+            noOfChildren: 0,
             noOfNights: 0,
             rooms: []
         },
@@ -263,46 +263,14 @@ class HotelBookingForm extends Component {
                                     <span className="required">*</span>
                                 </Form.Group>
                                 {index === 0 ? null : (
-                                    <React.Fragment>
-                                        <Form.Group as={Col} md="2" className="icon">
-                                            <i
-                                                className="fa fa-trash-o pointerCursor"
-                                                style={{ fontSize: "20px" }}
-                                                onClick={() => this.deleteRoom(index)}
-                                                title="Delete">
-                                            </i>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="5" controlId="formPlainSelect">
-                                            <Form.Control
-                                                as="select" title="Room No"
-                                                value={this.state.hotelBookingForm.rooms[index].roomNumber}
-                                                name="roomNo"
-                                                onChange={(event) => this.roomDetailsChangedHandler(event, "roomNumber", index)}
-                                                disabled={!this.state.isEdit && this.state.disable}
-                                                required >
-                                                <option value='' hidden>Room No</option>
-                                                {this.state.availableRooms.map((room, i) => {
-                                                    if (room.roomType === this.state.hotelBookingForm.rooms[index].roomType) {
-                                                        return <option key={`roomNo${i}`}>{room.roomNumber}</option>
-                                                    }
-                                                    return null;
-                                                })}
-                                            </Form.Control>
-                                            <span className="required">*</span>
-                                        </Form.Group>
-                                        {index === 0 ? null : (
-                                            <Form.Group as={Col} md="2" className="icon">
-                                                <Button
-                                                    variant="link"
-                                                    disabled={!this.state.isEdit && this.state.disable}><i
-                                                        className="fa fa-trash-o pointerCursor deleteButton"
-                                                        style={{ fontSize: "20px" }}
-                                                        onClick={() => this.deleteRoom(index)}
-                                                        title="Delete">
-                                                    </i></Button>
-                                            </Form.Group>
-                                        )}
-                                    </React.Fragment>
+                                    <Form.Group as={Col} md="2" className="icon">
+                                        <i
+                                            className="fa fa-trash-o pointerCursor"
+                                            style={{ fontSize: "20px" }}
+                                            onClick={() => this.deleteRoom(index)}
+                                            title="Delete">
+                                        </i>
+                                    </Form.Group>
                                 )}
                             </Form.Row>
                         )
